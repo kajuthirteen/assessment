@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10秒当てゲーム</title>
+    <style>
+      body {
+        background-color: lightskyblue;
+        color: midnightblue;
+        text-align: center;
+      }
+      button {
+        padding: 5px 20px;
+        background-color: #337AB7;
+        color: #FDFFFF;
+        border-style: none;
+      }
+    </style>
+</head>
+<body>
+    <h1 id="display-area"></h1>
+    <button id="stop">STOPボタン</button>
+    <script type="text/javascript">
+var game = {
+    startTime: null,
+    displayArea: document.getElementById('display-area'),
+    start: function () {
+      game.startTime = Date.now();
+      document.body.onclick = game.stop;
+    },
+    stop: function () {
+      var currentTime = Date.now();
+      var seconds = (currentTime - game.startTime) / 1000;
+      if (9.5 <= seconds && seconds <= 10.5) {
+        game.displayArea.innerText = seconds + '秒でした。すごい。';
+      } else {
+        game.displayArea.innerText = seconds + '秒でした。残念。';
+      }
+    }
+  };
+  if (confirm('OKを押して10秒だと思ったら「STOPボタン」を押して下さい')) {
+    game.start();
+  }
+</script>
+</body>
+</html>
